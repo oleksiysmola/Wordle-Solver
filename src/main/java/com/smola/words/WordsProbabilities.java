@@ -20,8 +20,10 @@ public class WordsProbabilities {
         return words;
     }
     // Method for calculating probability of returning a certain pattern
-    public double computePatternProbability(String word, String fakeAnswer){
-
+    public double computePatternProbability(Words words,
+                                            LinkedHashMap<Character, Integer> pattern){
+        // Get words from list of possible guesses
+        List<String> wordsList = words.getPossibleGuesses();
         return 2;
     }
 }
