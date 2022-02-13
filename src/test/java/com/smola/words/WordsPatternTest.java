@@ -39,11 +39,11 @@ public class WordsPatternTest {
         // Given
         String testWord = "solid";
         LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
-        testPattern.put("c", 0);
-        testPattern.put("m", 0);
-        testPattern.put("l", 2);
-        testPattern.put("d", 1);
-        testPattern.put("o", 1);
+        testPattern.put("c" + 0, 0);
+        testPattern.put("m" + 1, 0);
+        testPattern.put("l" + 2, 2);
+        testPattern.put("d" + 3, 1);
+        testPattern.put("o" + 4, 1);
         // When
         boolean actual = underTest.checkMatch(testWord, testPattern);
         // Then
@@ -54,11 +54,11 @@ public class WordsPatternTest {
         // Given
         String testWord = "solid";
         LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
-        testPattern.put("c", 0);
-        testPattern.put("m", 0);
-        testPattern.put("l", 2);
-        testPattern.put("d", 1);
-        testPattern.put("o", 0);
+        testPattern.put("c" + 0, 0);
+        testPattern.put("m" + 1, 0);
+        testPattern.put("l" + 2, 2);
+        testPattern.put("d" + 3, 1);
+        testPattern.put("o" + 4, 0);
         // When
         boolean actual = underTest.checkMatch(testWord, testPattern);
         // Then

@@ -21,9 +21,20 @@ public class WordsProbabilities {
     }
     // Method for calculating probability of returning a certain pattern
     public double computePatternProbability(Words words,
-                                            LinkedHashMap<Character, Integer> pattern){
+                                            WordsPattern patternChecker,
+                                            LinkedHashMap<String, Integer> pattern){
         // Get words from list of possible guesses
         List<String> wordsList = words.getPossibleGuesses();
-        return 2;
+        LinkedHashMap<String, Double> wordProbabilities = words.getProbabilityDistribution();
+        // Initialise variable to store result
+        double result = 0;
+        // Loop over the words
+        for (int i = 0; i < wordsList.size(); i++){
+            // If word is a possible match add the probability to the total
+            if (patternChecker.checkMatch(wordsList.get(i), pattern)){
+                result += wordProbabilities.get(wordsList.get(i));
+            }
+        }
+        return result;
     }
 }

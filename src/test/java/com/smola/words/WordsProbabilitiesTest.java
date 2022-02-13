@@ -38,4 +38,33 @@ public class WordsProbabilitiesTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void canComputeMatchProbability(){
+        // Given
+        List<String> inputWords = new ArrayList<>();
+        inputWords.add("hello");
+        inputWords.add("goods");
+        inputWords.add("birds");
+        testWords.setPossibleGuesses(inputWords);
+        LinkedHashMap<String, Double> inputProbabilities = new LinkedHashMap<>();
+        inputProbabilities.put("hello", 0.1);
+        inputProbabilities.put("goods", 0.1);
+        inputProbabilities.put("birds", 0.8);
+        testWords.setProbabilityDistribution(inputProbabilities);
+        WordsPattern patternMatcher = new WordsPattern();
+        LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
+        testPattern.put("b" + 0, 0);
+        testPattern.put("i" + 1, 0);
+        testPattern.put("r" + 2, 0);
+        testPattern.put("d" + 3, 2);
+        testPattern.put("s" + 4, 2);
+        // When
+        double actual = underTest.computePatternProbability(testWords,
+                patternMatcher,
+                testPattern);
+        // Then
+        double expected = 0.1;
+        assertThat(actual).isEqualTo(expected);
+
+    }
 }
