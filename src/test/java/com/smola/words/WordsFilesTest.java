@@ -10,6 +10,7 @@ import java.util.List;
 
 public class WordsFilesTest {
     private WordsFiles underTest;
+
     @BeforeEach
     void setUp(){
         underTest = new WordsFiles();
@@ -18,7 +19,7 @@ public class WordsFilesTest {
     @Test
     void testCanReadWordsFromFile(){
         // Given
-        File testFile = new File("wordfilestest.txt");
+        File testFile = new File("wordsfilestest.txt");
 
         // When
         List<String> actual = underTest.readWordsFromFile(testFile);
