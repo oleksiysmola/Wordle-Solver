@@ -19,4 +19,9 @@ public class WordsProbabilities {
         words.setProbabilityDistribution(distribution);
         return words;
     }
+    // Method for calculating probability of returning a certain pattern
+    public double computePatternProbability(String word, String fakeAnswer){
+
+        return 2;
+    }
 }
