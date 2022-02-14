@@ -43,6 +43,24 @@ public class WordsEntropy {
         return entropy;
     }
 
+    public Words obtainEntropyDistribution(Words words){
+        // Get words list
+        List<String> wordsList = words.getPossibleGuesses();
+        // Initialise map for entropy distribution
+        LinkedHashMap<String, Double> entropyDistribution = new LinkedHashMap<>();
+        // Initialise entropy variable
+        double entropy;
+        // Loop over words
+        for (int i = 0; i < wordsList.size(); i++){
+            // Compute entropy for word then add to map
+            entropy = computeWordEntropy(wordsList.get(i), words);
+            entropyDistribution.put(wordsList.get(i), entropy);
+        }
+        // Sets the entropy distribution in the words object
+        words.setEntropyDistribution(entropyDistribution);
+        return words;
+    }
+
     public double log2(double value){
         return log(value)/log(2);
     }
