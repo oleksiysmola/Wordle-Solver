@@ -15,13 +15,19 @@ public class WordsEntropy {
         // Get word list and probability distribution
         List<String> wordList = words.getPossibleGuesses();
         LinkedHashMap<String, Double> probabilityDistribution = words.getProbabilityDistribution();
-        wordList.remove(word); // We are not matching the word with itself!
+        // Start a reduced list that doesn't include guess word
+        List<String> reducedWordsList = new ArrayList<>();
+        for (int i = 0; i < wordList.size(); i++) {
+            reducedWordsList.add(wordList.get(i));
+        }
+        reducedWordsList.remove(word); // Remove guess word as we would over count when matching
         Words reducedWords = new Words();
-        reducedWords.setPossibleGuesses(wordList);
+        reducedWords.setPossibleGuesses(reducedWordsList);
         reducedWords.setProbabilityDistribution(probabilityDistribution);
+
         // Loop over list of words
-        for (int i = 0; i < wordList.size(); i++){
-            newPattern = wordsPattern.generatePattern(word, wordList.get(i));
+        for (int i = 0; i < reducedWordsList.size(); i++){
+            newPattern = wordsPattern.generatePattern(word, reducedWordsList.get(i));
             if (!patterns.contains(newPattern)){
                 patterns.add(newPattern);
             }

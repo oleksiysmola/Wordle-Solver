@@ -49,6 +49,31 @@ public class WordsEntropyTest {
         // Then
         double expected = 1.5;
         assertThat(actual).isEqualTo(expected);
+    }
 
+    @Test
+    void canGenerateEntropyDistribution(){
+        // Given
+        List<String> testWordsList = new ArrayList<>();
+        testWordsList.add("birds");
+        testWordsList.add("troll");
+        testWordsList.add("anger");
+        testWordsList.add("bonds");
+        LinkedHashMap<String, Double> testProbabilities = new LinkedHashMap<>();
+        for (int i = 0; i < testWordsList.size(); i++) {
+            testProbabilities.put(testWordsList.get(i), 0.25);
+        }
+        Words testWords = new Words();
+        testWords.setPossibleGuesses(testWordsList);
+        testWords.setProbabilityDistribution(testProbabilities);
+        // When
+        Words actual = underTest.obtainEntropyDistribution(testWords);
+        // Then
+        LinkedHashMap<String, Double> expected = new LinkedHashMap<>();
+        expected.put("birds", 1.5);
+        expected.put("troll", 1.5);
+        expected.put("anger", 1.5);
+        expected.put("bonds", 2.0);
+        assertThat(actual.getEntropyDistribution()).isEqualTo(expected);
     }
 }
