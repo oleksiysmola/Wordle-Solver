@@ -5,13 +5,12 @@ import java.util.*;
 import static java.lang.Math.log;
 
 public class WordsEntropy {
-    public double computeWordEntropy(String word, Words words){
+    public double computeWordEntropy(String word, Words words, WordsPattern wordsPattern){
         // Invoke word probability class
         WordsProbabilities wordsProbabilities = new WordsProbabilities();
-        // Initialise list for patterns and generate instance of pattern class
+        // Initialise list for patterns
         List<LinkedHashMap> patterns = new ArrayList<>();
         LinkedHashMap<String, Integer> newPattern = new LinkedHashMap<>();
-        WordsPattern wordsPattern = new WordsPattern();
         // Get word list and probability distribution
         List<String> wordList = words.getPossibleGuesses();
         LinkedHashMap<String, Double> probabilityDistribution = words.getProbabilityDistribution();
@@ -38,6 +37,7 @@ public class WordsEntropy {
         // Loop over patterns and words
         for (int i = 0; i < patterns.size(); i++){
             probability = wordsProbabilities.computePatternProbability(
+                    word,
                     reducedWords,
                     wordsPattern,
                     patterns.get(i));
@@ -49,7 +49,7 @@ public class WordsEntropy {
         return entropy;
     }
 
-    public Words obtainEntropyDistribution(Words words){
+    public Words obtainEntropyDistribution(Words words, WordsPattern wordsPattern){
         // Get words list
         List<String> wordsList = words.getPossibleGuesses();
         // Initialise map for entropy distribution
@@ -59,7 +59,7 @@ public class WordsEntropy {
         // Loop over words
         for (int i = 0; i < wordsList.size(); i++){
             // Compute entropy for word then add to map
-            entropy = computeWordEntropy(wordsList.get(i), words);
+            entropy = computeWordEntropy(wordsList.get(i), words, wordsPattern);
             entropyDistribution.put(wordsList.get(i), entropy);
         }
         // Sets the entropy distribution in the words object

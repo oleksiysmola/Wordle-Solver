@@ -20,7 +20,8 @@ public class WordsProbabilities {
         return words;
     }
     // Method for calculating probability of returning a certain pattern
-    public double computePatternProbability(Words words,
+    public double computePatternProbability(String word,
+                                            Words words,
                                             WordsPattern patternChecker,
                                             LinkedHashMap<String, Integer> pattern){
         // Get words from list of possible guesses
@@ -31,7 +32,7 @@ public class WordsProbabilities {
         // Loop over the words
         for (int i = 0; i < wordsList.size(); i++){
             // If word is a possible match add the probability to the total
-            if (patternChecker.checkMatch(wordsList.get(i), pattern)){
+            if (patternChecker.checkMatch(word, wordsList.get(i), pattern)){
                 result += wordProbabilities.get(wordsList.get(i));
             }
         }

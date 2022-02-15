@@ -34,53 +34,13 @@ public class WordsPattern {
         return pattern;
     }
 
-    public boolean checkMatch(String word,
+    public boolean checkMatch(String word, String targetWord,
                               LinkedHashMap<String, Integer> pattern){
-        // Initialise maps for tracking number of occurrences
-        LinkedHashMap<Character, Integer> occurrencesPattern = new LinkedHashMap<>();
-        LinkedHashMap<Character, Integer> occurrencesTarget = new LinkedHashMap<>();
-        // Counter for loop
-        int n = 0;
-        for (String key: pattern.keySet()){
-            if (occurrencesPattern.get(key.charAt(0)).equals(null)){
-                occurrencesPattern.put(key.charAt(0), 0);
-            }
-            if (occurrencesTarget.get(word.charAt(n)).equals(null)){
-                occurrencesTarget.put(word.charAt(n), 0);
-            } else {
-                occurrencesTarget.put(word.charAt(n),
-                        occurrencesTarget.get(word.charAt(n)) + 1);
-            }
-            n++; // Update count
-        }
-        // Initialise boolean to track result
-        boolean result = true;
-        // Reset counter for loop
-        n = 0;
-        // Loop over pattern
-        for (String key: pattern.keySet()){
-            switch (pattern.get(key)){
-                case 0:
-                    // If word contains letter from pattern return false
-                    if (word.contains(String.valueOf(key.charAt(0)))) {
-                        return false;
-                    }
-                    break;
-                case 1:
-                    // If word doesn't include letter return false
-                    if (!word.contains(String.valueOf(key.charAt(0)))){
-                        return false;
-                    } else if (occurrencesPattern.get(key.charAt(0))
-                            <= occurrencesPattern.get(word))
-                    break;
-                case 2:
-                    // If letter not at current position return false
-                    if (word.charAt(n) != key.charAt(0)){
-                        return false;
-                    }
-            }
-            n++; // Update n
-        }
+        // Map for new pattern
+        LinkedHashMap<String, Integer> newPattern = new LinkedHashMap<>();
+        newPattern = generatePattern(word, targetWord);
+        // Checks if the patterns match
+        boolean result = pattern.equals(newPattern);
         return result;
     }
 }

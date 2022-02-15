@@ -37,34 +37,36 @@ public class WordsPatternTest {
     }
 
     @Test
-    @Disabled
     void testCheckPatternReturnsTrue(){
         // Given
-        String testWord = "solid";
+        String testWord = "broom";
+        String testTargetWord = "booms";
         LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
-        testPattern.put("c" + 0, 0);
-        testPattern.put("m" + 1, 0);
-        testPattern.put("l" + 2, 2);
-        testPattern.put("d" + 3, 1);
-        testPattern.put("o" + 4, 1);
+        testPattern.put("b0", 1);
+        testPattern.put("b", 0);
+        testPattern.put("r", 0);
+        testPattern.put("o2", 1);
+        testPattern.put("o", 1);
+        testPattern.put("m", 1);
         // When
-        boolean actual = underTest.checkMatch(testWord, testPattern);
+        boolean actual = underTest.checkMatch(testWord, testTargetWord, testPattern);
         // Then
         assertThat(actual).isTrue();
     }
     @Test
-    @Disabled
     void testCheckPatternReturnsFalse(){
         // Given
-        String testWord = "solid";
+        String testWord = "broom";
+        String testTargetWord = "bonds";
         LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
-        testPattern.put("c" + 0, 0);
-        testPattern.put("m" + 1, 0);
-        testPattern.put("l" + 2, 2);
-        testPattern.put("d" + 3, 1);
-        testPattern.put("o" + 4, 0);
+        testPattern.put("b0", 1);
+        testPattern.put("b", 0);
+        testPattern.put("r", 0);
+        testPattern.put("o2", 1);
+        testPattern.put("o", 1);
+        testPattern.put("m", 1);
         // When
-        boolean actual = underTest.checkMatch(testWord, testPattern);
+        boolean actual = underTest.checkMatch(testWord, testTargetWord, testPattern);
         // Then
         assertThat(actual).isFalse();
     }

@@ -53,13 +53,16 @@ public class WordsProbabilitiesTest {
         testWords.setProbabilityDistribution(inputProbabilities);
         WordsPattern patternMatcher = new WordsPattern();
         LinkedHashMap<String, Integer> testPattern = new LinkedHashMap<>();
-        testPattern.put("b" + 0, 0);
-        testPattern.put("i" + 1, 0);
-        testPattern.put("r" + 2, 0);
-        testPattern.put("d" + 3, 2);
-        testPattern.put("s" + 4, 2);
+        testPattern.put("b", 0);
+        testPattern.put("i", 0);
+        testPattern.put("r", 0);
+        testPattern.put("d", 0);
+        testPattern.put("s", 0);
+        testPattern.put("d3", 1);
+        testPattern.put("s4", 1);
         // When
-        double actual = underTest.computePatternProbability(testWords,
+        double actual = underTest.computePatternProbability("birds",
+                testWords,
                 patternMatcher,
                 testPattern);
         // Then

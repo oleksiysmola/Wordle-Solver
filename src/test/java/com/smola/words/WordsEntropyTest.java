@@ -44,8 +44,9 @@ public class WordsEntropyTest {
         Words testWords = new Words();
         testWords.setPossibleGuesses(testWordsList);
         testWords.setProbabilityDistribution(testProbabilities);
+        WordsPattern wordsPattern = new WordsPattern();
         // When
-        double actual = underTest.computeWordEntropy("birds", testWords);
+        double actual = underTest.computeWordEntropy("birds", testWords, wordsPattern);
         // Then
         double expected = 1.5;
         assertThat(actual).isEqualTo(expected);
@@ -66,8 +67,9 @@ public class WordsEntropyTest {
         Words testWords = new Words();
         testWords.setPossibleGuesses(testWordsList);
         testWords.setProbabilityDistribution(testProbabilities);
+        WordsPattern wordsPattern = new WordsPattern();
         // When
-        Words actual = underTest.obtainEntropyDistribution(testWords);
+        Words actual = underTest.obtainEntropyDistribution(testWords, wordsPattern);
         // Then
         LinkedHashMap<String, Double> expected = new LinkedHashMap<>();
         expected.put("birds", 1.5);
