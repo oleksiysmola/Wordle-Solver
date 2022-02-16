@@ -67,6 +67,7 @@ public class WordsEntropy {
                     wordsPattern,
                     wordsProbabilities);
             entropyDistribution.put(wordsList.get(i), entropy);
+            System.out.println(wordsList.get(i) + ": " + entropy + " bits");
         }
         // Sets the entropy distribution in the words object
         words.setEntropyDistribution(entropyDistribution);
