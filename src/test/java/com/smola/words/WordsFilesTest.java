@@ -36,6 +36,28 @@ public class WordsFilesTest {
         assertThat(actual).isEqualTo(expected);
     }
     @Test
+    void testCanReadWordEntropyFromFile(){
+        // Given
+        File testFile = new File("testprintentropy.txt");
+        Words testWords = new Words();
+
+        // When
+        Words actual = underTest.readWordsEntropyFromFile(testFile, testWords);
+
+        // Then
+        Words expected = new Words();
+        List<String> expectedWords = new ArrayList<>();
+        expectedWords.add("force");
+        expectedWords.add("jumps");
+        expected.setPossibleGuesses(expectedWords);
+        LinkedHashMap<String, Double> expectedEntropy = new LinkedHashMap<>();
+        expectedEntropy.put("force", 1.0);
+        expectedEntropy.put("jumps", 1.0);
+        expected.setEntropyDistribution(expectedEntropy);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     void testCanPrintEntropyDistributionToFile(){
         // Given
         File testFile = new File("testprintentropy.txt");

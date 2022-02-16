@@ -24,6 +24,34 @@ public class WordsFiles {
 
         return words;
     }
+    // Method to read words and entropy distribution from given text file
+    public Words readWordsEntropyFromFile(File file, Words words){
+        // Initialise empty string list
+        List<String> wordList = new ArrayList<>();
+        // Initialise empty map for entropy
+        LinkedHashMap<String, Double> entropies = new LinkedHashMap<>();
+        try {
+            // Initialise scanner
+            Scanner scanner = new Scanner(file);
+            // Initialise line and split
+            String line;
+            String[] lineSplit;
+            // Loop over all lines in file
+            while (scanner.hasNext()){
+                line = scanner.nextLine();
+                lineSplit = line.split(",");
+                // Fill words and entropy distribution
+                wordList.add(lineSplit[0]);
+                entropies.put(lineSplit[0], Double.valueOf(lineSplit[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Fill words object
+        words.setPossibleGuesses(wordList);
+        words.setEntropyDistribution(entropies);
+        return words;
+    }
     public void printWordsEntropyToFile(File file, Words words){
         // Obtain words from list
         List<String> wordList = words.getPossibleGuesses();
