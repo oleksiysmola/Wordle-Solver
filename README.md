@@ -16,16 +16,18 @@ as follows:
 - What word did you guess? This should be the five letter word
 you just entered into Wordle
 - What pattern did you obtain? If the below pattern is obtained
-from a guess then the input should be "f,1 o,2 d,0 s4,1".
+from a guess then the input should be "f,1 o,2 d,0 s,0 s4,1".
 In general this denotes first the letter then how many times it
 occurs in the answer. Here f occurs once so f,1 represents this,
 the two occurrences of o are denoted by o,2 and the lack of any d 
-in the answer is indicated by d,0. We treat greens separately and
-the letter is proceeded by the index denoting its position in the word.
-Here s4,1 specifies the existence of an s specifically at index 4
+in the answer is indicated by d,0. The letter s appears but is 
+position dependent so we give it an overall count of zero in this case
+s,0. We treat greens separately and the letter is proceeded by 
+the index denoting its position in the word. Here s4,1 
+specifies the existence of an s specifically at index 4
 in the answer.
   ![alt Example of possible Wordle pattern](patternexample1.png "Title")
 For the second example, we consider instead case where the second
 o is highlighted green. The input pattern would then be
-"f,1 o,1 d,0 o2,1 s4,1".
+"f,1 o,1 d,0 s,0 o2,1 s4,1".
   ![alt Example of possible Wordle pattern](patternexample2.png "Title")
