@@ -12,8 +12,8 @@ public class Main {
         Words initialWords = new Words();
         // Get initial words
         List<String> initialWordsList = new ArrayList<>();
-        File initialGuessFile = new File("possiblewords.txt");
-        initialWordsList = wordsFiles.readWordsFromFile(initialGuessFile);
+        File initialGuessFile = new File("initialentropy.txt");
+        initialWords = wordsFiles.readWordsEntropyFromFile(initialGuessFile, initialWords);
         initialWords.setPossibleGuesses(initialWordsList);
         // Set to uniform distribution
         WordsProbabilities wordsProbabilities = new WordsProbabilities();
