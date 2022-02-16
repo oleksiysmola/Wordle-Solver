@@ -1,0 +1,2 @@
+force,1.0
+jumps,1.0

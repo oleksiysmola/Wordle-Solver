@@ -5,9 +5,10 @@ import java.util.*;
 import static java.lang.Math.log;
 
 public class WordsEntropy {
-    public double computeWordEntropy(String word, Words words, WordsPattern wordsPattern){
-        // Invoke word probability class
-        WordsProbabilities wordsProbabilities = new WordsProbabilities();
+    public double computeWordEntropy(String word,
+                                     Words words,
+                                     WordsPattern wordsPattern,
+                                     WordsProbabilities wordsProbabilities){
         // Initialise list for patterns
         List<LinkedHashMap> patterns = new ArrayList<>();
         LinkedHashMap<String, Integer> newPattern = new LinkedHashMap<>();
@@ -49,7 +50,9 @@ public class WordsEntropy {
         return entropy;
     }
 
-    public Words obtainEntropyDistribution(Words words, WordsPattern wordsPattern){
+    public Words obtainEntropyDistribution(Words words,
+                                           WordsPattern wordsPattern,
+                                           WordsProbabilities wordsProbabilities){
         // Get words list
         List<String> wordsList = words.getPossibleGuesses();
         // Initialise map for entropy distribution
@@ -59,7 +62,10 @@ public class WordsEntropy {
         // Loop over words
         for (int i = 0; i < wordsList.size(); i++){
             // Compute entropy for word then add to map
-            entropy = computeWordEntropy(wordsList.get(i), words, wordsPattern);
+            entropy = computeWordEntropy(wordsList.get(i),
+                    words,
+                    wordsPattern,
+                    wordsProbabilities);
             entropyDistribution.put(wordsList.get(i), entropy);
         }
         // Sets the entropy distribution in the words object

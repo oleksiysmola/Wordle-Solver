@@ -1,9 +1,8 @@
 package com.smola.words;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,5 +23,29 @@ public class WordsFiles {
         }
 
         return words;
+    }
+    public void printWordsEntropyToFile(File file, Words words){
+        // Obtain words from list
+        List<String> wordList = words.getPossibleGuesses();
+        LinkedHashMap<String, Double> entropyDistribution = words.getEntropyDistribution();
+        try {
+            // Create file
+            file.createNewFile();
+            // Initiate file writer and print writer
+            FileWriter fileWriter = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            // Line to write
+            String line;
+            // Loop over word list
+            for (String word: wordList){
+                line = word + "," + entropyDistribution.get(word);
+                printWriter.println(line);
+            }
+            // Conclude writing
+            printWriter.flush();
+            printWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
