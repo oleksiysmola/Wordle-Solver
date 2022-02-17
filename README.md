@@ -31,3 +31,8 @@ For the second example, we consider instead case where the second
 o is highlighted green. The input pattern would then be
 "f,1 o,1 d,0 s,0 o2,1 s4,1".
   ![alt Example of possible Wordle pattern](patternexample2.png "Title")
+## Log of Scores
+Here is a log of the scores that the solver would have gotten
+on a given day:
+- 16/02/2022: 4 attempts to guess "caulk"
+- 17/02/2022: 5 attempts to guess "shake"
